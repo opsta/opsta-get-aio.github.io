@@ -1,2 +1,2 @@
-# opsta-get-aio.github.io
-For get-aio.opsta.io
+# opsta-get.github.io
+For get.opsta.io
