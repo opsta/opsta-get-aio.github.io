@@ -10,10 +10,11 @@ export OSA_VERSION=${1:-"17.0.5"}
 # Update and install required packages
 export TERM=xterm
 export DEBCONF_FRONTEND=noninteractive
+export DEBIAN_FRONTEND=noninteractive
 echo "console-setup   console-setup/charmap47 select  UTF-8" | debconf-set-selections
 apt update
-apt -y dist-upgrade
-apt -y autoremove
+apt -yq dist-upgrade
+apt -yq autoremove
 apt install -y git vim python unzip iotop htop iftop
 
 # Clone OSA
@@ -48,6 +49,13 @@ horizon_images_upload_mode: legacy
 EOF
 
 # Install OSA all-in-one
-./scripts/run-playbooks.sh
+cd /opt/openstack-ansible/playbooks
+openstack-ansible setup-hosts.yml
+openstack-ansible setup-infrastructure.yml
+openstack-ansible setup-openstack.yml
 
 reboot
+
+# When reboot, you need to reinitial Galera
+# cd /opt/openstack-ansible/playbooks
+# openstack-ansible -e galera_ignore_cluster_state=true galera-install.yml
