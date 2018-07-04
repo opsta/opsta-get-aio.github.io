@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # How to run
-# curl -fsSL https://git.io/fbx00 | bash -s -- 17.0.5
+# curl -fsSL https://get.opsta.io/aio.sh | bash -s -- 17.0.5
 
 set -e -x -u
 
