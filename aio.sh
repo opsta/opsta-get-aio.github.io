@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
+# How to run
+# curl -fsSL https://git.io/fbx00 | bash -s -- 17.0.5
+
 set -e -x -u
 
-export OSA_VERSION=${1:-"15.1.3"}
+export OSA_VERSION=${1:-"17.0.5"}
 
 # Update and install required packages
 apt update
