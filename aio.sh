@@ -8,8 +8,12 @@ set -e -x -u
 export OSA_VERSION=${1:-"17.0.5"}
 
 # Update and install required packages
+export TERM=xterm
+export DEBCONF_FRONTEND=noninteractive
+echo "console-setup   console-setup/charmap47 select  UTF-8" | debconf-set-selections
 apt update
 apt -y dist-upgrade
+apt -y autoremove
 apt install -y git vim python unzip iotop htop iftop
 
 # Clone OSA
@@ -45,3 +49,5 @@ EOF
 
 # Install OSA all-in-one
 ./scripts/run-playbooks.sh
+
+reboot
